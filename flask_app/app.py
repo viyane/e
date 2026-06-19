@@ -2,7 +2,11 @@ from flask import Flask, render_template, jsonify, request
 import requests
 import sqlite3
 import os
-from config import OMDB_API_KEY
+
+try:
+    from config import OMDB_API_KEY
+except ImportError:
+    OMDB_API_KEY = os.environ.get("OMDB_API_KEY")
 
 app = Flask(__name__)
 
