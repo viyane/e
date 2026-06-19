@@ -3,30 +3,30 @@
 <head>
   <title>Movie App</title>
   <style>
-    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
-    h1 { color: #333; }
-    .movie { background: #f5f5f5; padding: 16px; margin: 10px 0; border-radius: 8px; }
-    .movie a { text-decoration: none; color: #378ADD; font-weight: bold; }
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background:#111; color:#eee; }
+    .movie { display: flex; gap: 16px; background: #1e1e1e; padding: 16px; margin: 10px 0; border-radius: 8px; }
+    .movie img { width: 80px; border-radius: 4px; }
+    .movie a { text-decoration: none; color: #6fa8dc; font-weight: bold; }
     .badge { background: #378ADD; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
     .rating { color: #E6A817; font-weight: bold; }
   </style>
 </head>
 <body>
-  <h1>🎬 Movie Database</h1>
-  <p>{{ movies|length }} movies total</p>
+  <h1>🎬 Movie Database (live from IMDb via OMDb)</h1>
+  <p>{{ movies|length }} movies</p>
 
   {% for movie in movies %}
   <div class="movie">
-    <a href="/movie/{{ movie.id }}">{{ movie.title }}</a>
-    <span class="badge">{{ movie.genre }}</span>
-    <span class="rating">★ {{ movie.rating }}/10</span>
+    <img src="{{ movie.poster }}" onerror="this.style.display='none'">
+    <div>
+      <a href="/movie/{{ movie.id }}">{{ movie.title }}</a> ({{ movie.year }})<br>
+      <span class="badge">{{ movie.genre }}</span>
+      <span class="rating">★ {{ movie.rating }}/10</span>
+    </div>
   </div>
   {% endfor %}
 
   <hr>
-  <p>API: <a href="/api/movies">/api/movies</a> |
-     <a href="/api/movies?genre=Sci-Fi">/api/movies?genre=Sci-Fi</a> |
-     <a href="/api/movies?min_rating=9">/api/movies?min_rating=9</a>
-  </p>
+  <p><a href="/refresh">🔄 Refresh from OMDb</a></p>
 </body>
 </html>
