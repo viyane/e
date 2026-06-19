@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ movie.title }}</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+    .card { background: #f5f5f5; padding: 24px; border-radius: 8px; }
+    a { color: #378ADD; }
+  </style>
+</head>
+<body>
+  <a href="/">← Back</a>
+  <div class="card">
+    <h1>{{ movie.title }}</h1>
+    <p>Genre: <a href="/genre/{{ movie.genre }}">{{ movie.genre }}</a></p>
+    <p>Rating: ★ {{ movie.rating }}/10</p>
+  </div>
+</body>
+</html>
